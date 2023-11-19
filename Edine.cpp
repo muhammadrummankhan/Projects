@@ -168,6 +168,11 @@ void view_menu()
     viewdt.close();
 }
 
+//----------------------------------save--------------------------------
+void save()
+{
+
+}
 // -----------------------------------ORDER HISTORY---------------------------------
 void order_history()
 {
@@ -262,9 +267,9 @@ void staff_input()
     cin >> v.Phone;
     cout << "DOJ(dd/mm/yyyy): ";
     cin >> v.DOJ;
-    // v.line = v.name + "   " + v.DOB + "   " + v.Phone + "   " + v.DOJ+ "   " + v.Address;
-    ostringstream sos(v.line);
-    sos << v.name <<v.DOB;
+    v.line = v.name + "   " + v.DOB + "   " + v.Phone + "   " + v.DOJ+ "   " + v.Address;
+    // ostringstream sos(v.line);
+    // sos << v.name <<v.DOB;
 
     do
     {
