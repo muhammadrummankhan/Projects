@@ -33,7 +33,7 @@ struct staffs
     string lname;
     string DOB;
     // string mm,dd,yyyy;
-    string Address[100];
+    string Address[300];
     string Phone;
     string DOJ;
     string line;
@@ -260,12 +260,12 @@ void staff_input()
     cin >> v.DOB;
     // cin >> v.dd >> v.mm >> v.yyyy;
     cout << "Address: ";
-    cin >> v.Address[100];
+    cin >> v.Address[300];
     cout << "Phone: ";
     cin >> v.Phone;
     cout << "DOJ(dd/mm/yyyy): ";
     cin >> v.DOJ;
-    v.line = v.fname + " " + v.lname+ " " + v.DOB + " " + v.Phone + " " + v.DOJ+ " " + v.Address[100];
+    v.line = v.fname + " " + v.lname+ " " + v.DOB + " " + v.Phone + " " + v.DOJ+ " " + v.Address[300];
     do
     {
         cout << "\nDo you want to Save y/n: ";
@@ -302,7 +302,7 @@ void find_member()
         staff_file.beg;
         getline(staff_file,x.line);
         stringstream xs(x.line);
-        xs >> x.ID >> x.fname >> x.lname >> x.DOB >> x.Phone >> x.DOJ >> x.Address[100];
+        xs >> x.ID >> x.fname >> x.lname >> x.DOB >> x.Phone >> x.DOJ >> x.Address[300];
         if(x.fid == x.ID)
         {
             cout <<"ID: "<<x.ID<<endl;
@@ -310,7 +310,7 @@ void find_member()
             cout << "DOB: "<<x.DOB<<endl;
             cout << "Phone: "<<x.Phone<<endl;
             cout << "DOJ: "<<x.DOJ<<endl;
-            cout << "Address: "<<x.Address<<endl;
+            cout << "Address: "<<x.Address[300]<<endl;
             break;
         } 
 
