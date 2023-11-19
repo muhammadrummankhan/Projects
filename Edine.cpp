@@ -344,7 +344,7 @@ void customer()
         // code
         break;
     }
-    case 0:
+    case 0: 
     {
         main_page();
         break;
