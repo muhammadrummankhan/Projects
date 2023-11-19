@@ -33,7 +33,7 @@ struct staffs
     string lname;
     string DOB;
     // string mm,dd,yyyy;
-    string Address[300];
+    string Address;
     string Phone;
     string DOJ;
     string line;
@@ -125,7 +125,7 @@ void menu_management()
 {
     system("cls");
     cout << "\t\t\t\t\t\t\t\t\t*****WELCOME TO MENU MANAGEMENT*****\n\n";
-    cout << "<1> View Menu\n\n<2> Edit/Update Menu\n\n<0> Back";
+    cout << "\t<1> View Menu\n\n\t<2> Edit/Update Menu\n\n\t<0> Back";
     choose();
     cin >> option;
 
@@ -174,7 +174,7 @@ void order_history()
 {
     fstream order_history_file("order history.txt", ios ::in | ios ::out);
     cout << "\t\t\t\t\t\t\t\t\t*****ORDER HISTORY*****\n\n";
-    cout << "<1> View\n\n<2> Delete\n\n<0> Back";
+    cout << "\t<1> View\n\n\t<2> Delete\n\n\t<0> Back";
     if (option == 1)
     {
         while (!order_history_file.eof())
@@ -207,7 +207,7 @@ void staff()
 {
     system("cls");
     cout << "\t\t\t\t\t\t\t\t\t*****STAFF MANAGEMENT*****\n\n";
-    cout << "<1> View Member List\n\n<2> Add Member \n\n<3> Remove Member\n\n<4> Update Member Data\n\n<4> Find Member\n\n<0> Back";
+    cout << "\t<1> View Member List\n\n\t<2> Add Member \n\n\t<3> Remove Member\n\n\t<4> Update Member Data\n\n\t<5> Find Member\n\n\t<0> Back";
     choose();
     cin >> option;
     if (option == 1)
@@ -230,6 +230,10 @@ void staff()
         /* code */
     }
     else if (option == 4)
+    {
+        // -----
+    }
+    else if (option == 5)
     {
         find_member();
     }
@@ -260,12 +264,12 @@ void staff_input()
     cin >> v.DOB;
     // cin >> v.dd >> v.mm >> v.yyyy;
     cout << "Address: ";
-    cin >> v.Address[300];
+    cin >> v.Address;
     cout << "Phone: ";
     cin >> v.Phone;
     cout << "DOJ(dd/mm/yyyy): ";
     cin >> v.DOJ;
-    v.line = v.fname + " " + v.lname+ " " + v.DOB + " " + v.Phone + " " + v.DOJ+ " " + v.Address[300];
+    v.line = v.fname + " " + v.lname+ " " + v.DOB + " " + v.Phone + " " + v.DOJ+ " " + v.Address;
     do
     {
         cout << "\nDo you want to Save y/n: ";
@@ -294,28 +298,54 @@ void staff_input()
 // ------------------------------FIND STAFF MEMBER--------------------------------
 void find_member()
 {
+    system("cls");
+    cout<< "\t\t\t------------------------------------------"<<endl;
+    cout<< "\t\t\t               MEMBER FINDER              "<<endl;
+    cout<< "\t\t\t------------------------------------------"<<endl;
     struct staffs x;
-    cout <<"\n\n\tEnter ID: ";
+    cout <<"\n\n\t\tEnter ID: ";
     cin >> x.fid;
-    while(!staff_file.eof())
+    staff_file.beg;
+    while(getline(staff_file,x.line))
     {
-        staff_file.beg;
-        getline(staff_file,x.line);
         stringstream xs(x.line);
-        xs >> x.ID >> x.fname >> x.lname >> x.DOB >> x.Phone >> x.DOJ >> x.Address[300];
+        xs >> x.ID >> x.fname >> x.lname >> x.DOB >> x.Phone >> x.DOJ >> x.Address;
         if(x.fid == x.ID)
         {
-            cout <<"ID: "<<x.ID<<endl;
-            cout <<"Name: "<<x.fname<<" "<<x.lname<<endl;
-            cout << "DOB: "<<x.DOB<<endl;
-            cout << "Phone: "<<x.Phone<<endl;
-            cout << "DOJ: "<<x.DOJ<<endl;
-            cout << "Address: "<<x.Address[300]<<endl;
+            
+            cout <<"\tID: "<<x.ID<<endl;
+            cout <<"\tName: "<<x.fname<<" "<<x.lname<<endl;
+            cout << "\tDOB: "<<x.DOB<<endl;
+            cout << "\tPhone: "<<x.Phone<<endl;
+            cout << "\tDOJ: "<<x.DOJ<<endl;
+            cout << "\tAddress: "<<x.Address<<endl;
             break;
+        }
+        else if(staff_file.eof()==0)
+        {
+            cout << "\t\tInvalid ID! Please enter correct ID number."<<endl;
+            do
+            {
+                cout << "\n\t\tDo you want to Find again y/n: ";
+                cin >> ch;
+                if (ch == 'y' || ch == 'Y')
+                {
+                    find_member();
+                }
+                else if (ch == 'n' || ch == 'N')
+                {
+                    cout << "\n\t\tPress any key to go back...";
+                    getch();
+                    staff();
+                    break;
+                }
+                else
+                    cout << "\n\t\tINCORRECT OPTION! PLEASE ENTER Y/N...";
+            } while (true);
         } 
-
     }
 }
+
 // -------------------------------------CUSTOMER-----------------------------------------------------------------------------------------------------------------------
 void customer()
 {
