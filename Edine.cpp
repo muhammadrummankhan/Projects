@@ -22,6 +22,7 @@ void view_menu();
 void staff();
 void staff_input();
 void find_member();
+void savefm();
 // -----------------------
 void customer();
 
@@ -306,69 +307,61 @@ void find_member()
     cout <<"\n\n\t\tEnter ID: ";
     cin >> x.fid;
     // staff_file.beg;
-    //!staff_file.eof()
-    while(getline(staff_file,x.line))
+    while(!staff_file.eof())
     {
-
+        getline(staff_file,x.line);
         stringstream xs(x.line);
         xs >> x.ID >> x.fname >> x.lname >> x.DOB >> x.Phone >> x.DOJ >> x.Address;
-        if(x.fid == x.ID)
+        
+        if(x.line.length()!= 0)
         {
-            cout <<"\tID: "<<x.ID<<endl;
-            cout <<"\tName: "<<x.fname<<" "<<x.lname<<endl;
-            cout << "\tDOB: "<<x.DOB<<endl;
-            cout << "\tPhone: "<<x.Phone<<endl;
-            cout << "\tDOJ: "<<x.DOJ<<endl;
-            cout << "\tAddress: "<<x.Address<<endl;
-            
-            do
+            if(x.fid == x.ID)
             {
-                cout << "\n\t\tDo you want to Find again y/n: ";
-                cin >> ch;
-                if (ch == 'y' || ch == 'Y')
-                {
-                    staff_file.seekg(0, ios :: beg);
-                    find_member();
-                }
-                else if (ch == 'n' || ch == 'N')
-                {
-                    cout << "\n\t\tPress any key to go back...";
-                    getch();
-                    staff();
-                    break;
-                }
-                else
-                    cout << "\n\t\tINCORRECT OPTION! PLEASE ENTER Y/N...";
-            } while (true);
-            break;
-        }
-        else if(x.fid != x.ID)
-        {
-            cout << "\n\t\tInvalid ID! Please enter correct ID number."<<endl;
-            getch();
-        }
-        do
-        {
-            cout << "\n\t\tDo you want to Find again y/n: ";
-            cin >> ch;
-            if (ch == 'y' || ch == 'Y')
-            {
-                staff_file.seekg(0, ios :: beg);
-                find_member();
-            }
-            else if (ch == 'n' || ch == 'N')
-            {
-                cout << "\n\t\tPress any key to go back...";
-                getch();
-                staff();
+                cout <<"\tID: "<<x.ID<<endl;
+                cout <<"\tName: "<<x.fname<<" "<<x.lname<<endl;
+                cout << "\tDOB: "<<x.DOB<<endl;
+                cout << "\tPhone: "<<x.Phone<<endl;
+                cout << "\tDOJ: "<<x.DOJ<<endl;
+                cout << "\tAddress: "<<x.Address<<endl;
+                savefm();
                 break;
             }
             else
-                cout << "\n\t\tINCORRECT OPTION! PLEASE ENTER Y/N...";
-        } while (true); 
+            {
+                cout << "\n\t\tInvalid ID! Please enter correct ID number."<<endl;
+                getch();
+                savefm();
+            }
+        }   
+        else
+        {
+            staff_file.seekg(0 , ios :: beg);
+        }
     }
 }
-
+// --------------save function(FM)------------
+void savefm()
+{
+    do
+    {
+        cout << "\n\t\tDo you want to Find again y/n: ";
+        cin >> ch;
+        if (ch == 'y' || ch == 'Y')
+        {
+            staff_file.seekg(0, ios :: beg);
+            find_member();
+        }
+        else if (ch == 'n' || ch == 'N')
+        {
+            cout << "\n\t\tPress any key to go back...";
+            getch();
+            staff();
+            break;
+        }
+        else
+            cout << "\n\t\tINCORRECT OPTION! PLEASE ENTER Y/N...";
+    } while (true);
+}
 // -------------------------------------CUSTOMER-----------------------------------------------------------------------------------------------------------------------
 void customer()
 {
