@@ -7,7 +7,6 @@
 using namespace std;
 
 short int option;
-
 char ch;
 
 void choose();
@@ -27,16 +26,18 @@ void find_member();
 void customer();
 
 
-struct staffs
+struct staffs 
 {
     int ID;
-    string name;
+    string fname;
+    string lname;
     string DOB;
     // string mm,dd,yyyy;
-    string Address;
+    string Address[100];
     string Phone;
     string DOJ;
     string line;
+    int fid;
 };
 
 int main()
@@ -168,11 +169,6 @@ void view_menu()
     viewdt.close();
 }
 
-//----------------------------------save--------------------------------
-void save()
-{
-    
-}
 // -----------------------------------ORDER HISTORY---------------------------------
 void order_history()
 {
@@ -256,27 +252,27 @@ void staff_input()
     struct staffs v;
     cout << "ID: ";
     cin >> v.ID;
-    cout << "Name: ";
-    cin >> v.name;
+    cout << "First Name: ";
+    cin >> v.fname;
+    cout << "last Name: ";
+    cin >> v.lname;
     cout << "DOB(dd/mm/yyyy): ";
     cin >> v.DOB;
     // cin >> v.dd >> v.mm >> v.yyyy;
     cout << "Address: ";
-    cin >> v.Address;
+    cin >> v.Address[100];
     cout << "Phone: ";
     cin >> v.Phone;
     cout << "DOJ(dd/mm/yyyy): ";
     cin >> v.DOJ;
-    v.line = v.name + "   " + v.DOB + "   " + v.Phone + "   " + v.DOJ+ "   " + v.Address;
-    // ostringstream sos(v.line);
-    // sos << v.name <<v.DOB;
-
+    v.line = v.fname + " " + v.lname+ " " + v.DOB + " " + v.Phone + " " + v.DOJ+ " " + v.Address[100];
     do
     {
         cout << "\nDo you want to Save y/n: ";
         cin >> ch;
         if (ch == 'y' || ch == 'Y')
         {
+            // staff_file.app;
             staff_file << "\n"
                        << v.ID << " " << v.line;
             cout << "Successfully Saved! Press any key to go back...";
@@ -298,7 +294,27 @@ void staff_input()
 // ------------------------------FIND STAFF MEMBER--------------------------------
 void find_member()
 {
-    //-----file
+    struct staffs x;
+    cout <<"\n\n\tEnter ID: ";
+    cin >> x.fid;
+    while(!staff_file.eof())
+    {
+        staff_file.beg;
+        getline(staff_file,x.line);
+        stringstream xs(x.line);
+        xs >> x.ID >> x.fname >> x.lname >> x.DOB >> x.Phone >> x.DOJ >> x.Address[100];
+        if(x.fid == x.ID)
+        {
+            cout <<"ID: "<<x.ID<<endl;
+            cout <<"Name: "<<x.fname<<" "<<x.lname<<endl;
+            cout << "DOB: "<<x.DOB<<endl;
+            cout << "Phone: "<<x.Phone<<endl;
+            cout << "DOJ: "<<x.DOJ<<endl;
+            cout << "Address: "<<x.Address<<endl;
+            break;
+        } 
+
+    }
 }
 // -------------------------------------CUSTOMER-----------------------------------------------------------------------------------------------------------------------
 void customer()
