@@ -324,13 +324,6 @@ void find_member()
                 cout << "\tDOJ: "<<x.DOJ<<endl;
                 cout << "\tAddress: "<<x.Address<<endl;
                 savefm();
-                break;
-            }
-            else
-            {
-                cout << "\n\t\tInvalid ID! Please enter correct ID number."<<endl;
-                getch();
-                savefm();
             }
         }   
         else
@@ -338,8 +331,13 @@ void find_member()
             staff_file.seekg(0 , ios :: beg);
         }
     }
+    if(x.fid != x.ID)
+    {
+        cout << "\n\t\tInvalid ID! Please enter correct ID number."<<endl;
+        savefm();
+    }
 }
-// --------------save function(FM)------------
+// --------------save function(Find Member)-------------------
 void savefm()
 {
     do
@@ -348,7 +346,7 @@ void savefm()
         cin >> ch;
         if (ch == 'y' || ch == 'Y')
         {
-            staff_file.seekg(0, ios :: beg);
+            staff_file.seekg(0 , ios :: beg);
             find_member();
         }
         else if (ch == 'n' || ch == 'N')
