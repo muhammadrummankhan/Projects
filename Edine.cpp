@@ -11,6 +11,7 @@ char ch;
 
 void choose();
 void wrong_entry();
+void title();
 void main_page();
 // -----------------------
 void manager_portal();
@@ -118,6 +119,13 @@ void wrong_entry()
 
 // --------------------------------CHANGE PASSWORD---------------------------------------------------------------------------------------------------------------
 
+// --------------------------------title-----------------------------------------------------------------
+void title(string t)
+{
+    cout<< "------------------------------------------"<<endl;
+    cout<< "                "<<t<<"                     "<<endl;
+    cout<< "------------------------------------------";
+}
 // -----------------------------------MENU MANAGEMENT------------------------------------------------------------------------------------------------------------
 fstream viewd("drinks.txt", ios :: in | ios::out | ios::app);
 fstream viewf("fastfood.txt", ios :: in | ios::out | ios::app);
@@ -300,9 +308,10 @@ void staff_input()
 void find_member()
 {
     system("cls");
-    cout<< "\t\t\t------------------------------------------"<<endl;
-    cout<< "\t\t\t               MEMBER FINDER              "<<endl;
-    cout<< "\t\t\t------------------------------------------"<<endl;
+    // cout<< "\t\t\t------------------------------------------"<<endl;
+    // cout<< "\t\t\t               MEMBER FINDER              "<<endl;
+    // cout<< "\t\t\t------------------------------------------"<<endl;
+    title("MEMBER FNDER");
     struct staffs x;
     cout <<"\n\n\t\tEnter ID: ";
     cin >> x.fid;
