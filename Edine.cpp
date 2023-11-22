@@ -101,7 +101,6 @@ void manager_portal()
     else
     {
         wrong_entry();
-        getch();
         manager_portal();
     }
 }
@@ -113,7 +112,8 @@ void choose()
 // ----------------------------------WRONG ENTRY-----------------------------------------------------------------------------------------------------------------
 void wrong_entry()
 {
-    cout << "\n\n\t\tIncorrect Option! Please choose from the given option...";
+    cout << "\n\n\t\tIncorrect Option! Please choose from the given option.\n\tPress any key to try again...";
+    getch();
 }
 // -----------------------------------PASSWORD-------------------------------------------------------------------------------------------------------------------
 
@@ -158,7 +158,6 @@ void menu_management()
     else
     {
         wrong_entry();
-        getch();
         menu_management();
     }
 }
@@ -206,6 +205,7 @@ void order_history()
     }
     else
     {
+        wrong_entry();
         order_history();
     }
     order_history_file.close();
@@ -253,7 +253,6 @@ void staff()
     else
     {
         wrong_entry();
-        getch();
         staff();
     }
 }
@@ -404,7 +403,6 @@ void customer()
     }
     default:
         wrong_entry();
-        getch();
         customer();
         break;
     }
